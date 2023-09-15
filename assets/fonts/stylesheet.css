@@ -1,0 +1,22 @@
+@font-face {
+  font-family: e-ukrainehead;
+  font-weight: 100;
+  src: url(e-ukrainehead-thin_w.woff) format("woff");
+}
+
+@font-face {
+  font-family: e-ukrainehead;
+  font-weight: 300;
+  src: url(e-ukrainehead-light_w.woff) format("woff");
+}
+@font-face {
+  font-family: e-ukrainehead;
+  font-weight: 400;
+  src: url(e-ukrainehead-regular_w.woff) format("woff");
+}
+
+@font-face {
+  font-family: e-ukrainehead;
+  font-weight: 700;
+  src: url(e-ukrainehead-bold_w.woff) format("woff");
+}
