@@ -3,12 +3,12 @@ const DISCOUNT_PERCENT = 63;
 
 const props = defineProps<{
   hit?: boolean;
-  hitText: string;
-  title: string;
-  subtitle: string;
+  hitText?: string;
+  title?: string;
+  subtitle?: string;
   discount: string;
   price: number;
-  paymentMethod: string;
+  paymentMethod?: string;
 }>();
 
 const { hit, title, discount, price, hitText, paymentMethod } = toRefs(props);
@@ -25,34 +25,46 @@ const discountPrice = computed(() => {
     >
       <div class="flex gap-3 items-center justify-center">
         <BaseIconsDirection />
-        <p class="font-raleway text-[13px] font-bold">{{ hitText }}</p>
+        <p v-if="hitText" class="font-raleway text-[13px] font-bold">{{ hitText }}</p>
         <BaseIconsDirection />
       </div>
     </div>
     <div>
       <div
         class="mb-3 flex items-center justify-center gap-[10px] font-raleway font-extrabold text-[13px] text-center"
+        v-if="title"
       >
         {{ title }}
-        <div
-          v-if="discount"
-          class="font-inter w-[34px] leading-8 bg-primary-1 rounded-full text-[10px] text-white"
-        >
+        <div class="font-inter w-[34px] leading-8 bg-primary-1 rounded-full text-[10px] text-white">
           {{ discount }}
         </div>
       </div>
       <p
         class="leading-normal mb-2 font-normal text-[13px] text-center m-auto max-w-[250px] min-h-[3em]"
+        v-if="subtitle"
       >
         {{ subtitle }}
       </p>
       <div class="mb-3">
-        <p class="font-normal text-center text-[13px] text-gray-400 line-through">
-          {{ price }} грн/міс.
-        </p>
-        <p class="font-bold text-center text-[17px]">{{ discountPrice }} грн/міс.</p>
+        <div class="flex items-center justify-center gap-7">
+          <div>
+            <p
+              :class="[!title && discount ? 'text-left' : 'text-center']"
+              class="font-normal text-[13px] text-gray-400 line-through"
+            >
+              {{ price }} грн/міс.
+            </p>
+            <p class="font-bold text-center text-[17px]">{{ discountPrice }} грн/міс.</p>
+          </div>
+          <div
+            v-if="!title && discount"
+            class="font-inter text-center w-[34px] leading-8 bg-primary-1 rounded-full text-[10px] text-white"
+          >
+            {{ discount }}
+          </div>
+        </div>
       </div>
-      <BaseButton size="small" type="primary" text="Оплатити карткою" to="##" link class="mb-3" />
+      <slot name="action"></slot>
       <p class="font-raleway text-center underline font-normal text-[13px] text-gray-400">
         {{ paymentMethod }}
       </p>

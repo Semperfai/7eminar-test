@@ -1,5 +1,13 @@
 <script setup lang="ts">
-const dateEnd = '2023-10-03T00:00:00+02:00';
+import { TARIFF_PACKAGES } from '@/__mocks__/tariff-packages';
+
+const countDownData = reactive<{
+  dateEnd: string;
+  text: string;
+}>({
+  dateEnd: '2023-10-03T00:00:00+02:00',
+  text: '(для діючих передплатників додаткова знижка 10%)',
+});
 </script>
 <template>
   <section id="PrepaymentSection" class="pt-28 pb-20 bg-white-1">
@@ -9,30 +17,89 @@ const dateEnd = '2023-10-03T00:00:00+02:00';
         Онлайн-Академію
       </h2>
       <p class="font-raleway font-bold text-xl text-center mb-10">Оберіть свій тарифний пакет:</p>
-      <!-- header -->
-      <div class="grid grid-cols-1 gap-6 justify-center md:flex md:justify-between items-center">
-        <BaseCountdown text="(для діючих передплатників додаткова знижка 10%)" :end="dateEnd" />
-        <PrepaymentCart
-          :hit="true"
-          discount="-75%"
-          :price="1079"
-          title="СУПЕРПРОФЕСІОНАЛ"
-          subtitle="8 професійних курсів за ціною 2"
-          hit-text="ХІТ ПРОДАЖУ"
-          payment-method="Оплатити частинами"
-        />
-        <PrepaymentCart
-          class="self-end"
-          :hit="false"
-          discount="-75%"
-          :price="1079"
-          title="ПРЕМІУМ"
-          subtitle="8 професійних курсів за ціною 2 + Бухгалтерьска Відеоплатформа № 1 "
-          hit-text="ХІТ ПРОДАЖУ"
-          payment-method="Оплатити частинами"
-        />
-      </div>
-      <!-- body -->
+
+      <PrepaymentTable>
+        <template #header>
+          <BaseCountdown :text="countDownData.text" :end="countDownData.dateEnd" />
+          <PrepaymentCart
+            :hit="true"
+            discount="-75%"
+            :price="1079"
+            title="СУПЕРПРОФЕСІОНАЛ"
+            subtitle="8 професійних курсів за ціною 2"
+            hit-text="ХІТ ПРОДАЖУ"
+            payment-method="Оплатити частинами"
+          >
+            <template #action>
+              <BaseButton
+                size="small"
+                type="primary"
+                text="Оплатити карткою"
+                to="##"
+                link
+                class="mb-3"
+              />
+            </template>
+          </PrepaymentCart>
+          <PrepaymentCart
+            class="self-end"
+            :hit="false"
+            discount="-75%"
+            :price="1079"
+            title="ПРЕМІУМ"
+            subtitle="8 професійних курсів за ціною 2 + Бухгалтерьска Відеоплатформа № 1 "
+            hit-text="ХІТ ПРОДАЖУ"
+            payment-method="Оплатити частинами"
+          >
+            <template #action>
+              <BaseButton
+                size="small"
+                type="primary"
+                text="Оплатити карткою"
+                to="##"
+                link
+                class="mb-3"
+              />
+            </template>
+          </PrepaymentCart>
+        </template>
+        <template #body>
+          <PrepaymentTableRow
+            v-for="item in TARIFF_PACKAGES"
+            :key="item.id"
+            :text="item.text"
+            :new="item.new"
+            :rate_one="item.rate_one"
+            :rate_two="item.rate_two"
+          />
+        </template>
+        <template #footer>
+          <PrepaymentCart :hit="false" discount="-75%" :price="1079">
+            <template #action>
+              <BaseButton
+                size="small"
+                type="primary"
+                text="Завантажити рахунок"
+                to="##"
+                link
+                class="mb-3"
+              />
+            </template>
+          </PrepaymentCart>
+          <PrepaymentCart class="self-end" :hit="false" discount="-75%" :price="1079">
+            <template #action>
+              <BaseButton
+                size="small"
+                type="primary"
+                text="Завантажити рахунок"
+                to="##"
+                link
+                class="mb-3"
+              />
+            </template>
+          </PrepaymentCart>
+        </template>
+      </PrepaymentTable>
     </BaseContainer>
   </section>
 </template>
