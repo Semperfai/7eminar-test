@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,22 +7,23 @@ module.exports = {
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}'
+    './nuxt.config.{js,ts}',
   ],
   theme: {
     extend: {
       fontFamily: {
         raleway: ['Raleway', 'sans-serif'],
-        eukraine: ['e-ukrainehead', 'sans-serif']
+        inter: ['Inter', 'sans-serif'],
+        eukraine: ['e-ukrainehead', 'sans-serif'],
       },
       colors: {
         'primary-1': '#0066CC',
         'primary-2': '#3333A7',
         'content-1': '#232323',
         'yellow-2': '#FFE601',
-        'white-1': '#FAFAFA'
-      }
-    }
+        'white-1': '#FAFAFA',
+      },
+    },
   },
-  plugins: []
-}
+  plugins: [],
+};

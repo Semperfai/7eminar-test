@@ -5,18 +5,14 @@ const props = defineProps<
     hitText: string
     title: string
     subtitle: string
-    discount: number
+    discount: string
     price: number
   }>
 >()
 
 const { hit, title, discount, price, hitText } = toRefs(props)
 
-const discountPrice = computed(() => {
-  if (discount?.value && price?.value) {
-    return price.value - (price.value * discount.value) / 100
-  }
-})
+
 </script>
 <template>
   <div class="flex flex-col justify-center items- min-w-[255px]">
@@ -32,8 +28,9 @@ const discountPrice = computed(() => {
     <div>
       <p class="flex items-center justify-center gap-[10px] font-raleway font-bold text-[18px] text-center">
         {{ title }}
-        <p v-if="discount" class="inline-flex text-[10px] rounded-full justify-center items-center  h-8 w-8 px-1 py-[10px] bg-primary-1 text-white">
-          -{{ discount }}%</p
+        <div v-if="discount" class=" font-inter  w-[34px] leading-8 bg-primary-1 rounded-full text-[10px] text-white " >
+          {{ discount}}
+          </div
         >
       </p>
       <p class="font-raleway font-bold text-[18px] text-center">
