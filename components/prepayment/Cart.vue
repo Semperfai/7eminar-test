@@ -1,24 +1,28 @@
 <script setup lang="ts">
-const props = defineProps<
-  Partial<{
-    hit: boolean
-    hitText: string
-    title: string
-    subtitle: string
-    discount: string
-    price: number
-  }>
->()
+const DISCOUNT_PERCENT = 63;
 
-const { hit, title, discount, price, hitText } = toRefs(props)
+const props = defineProps<{
+  hit?: boolean;
+  hitText: string;
+  title: string;
+  subtitle: string;
+  discount: string;
+  price: number;
+  paymentMethod: string;
+}>();
 
+const { hit, title, discount, price, hitText, paymentMethod } = toRefs(props);
 
+const discountPrice = computed(() => {
+  return Math.floor(price.value * (DISCOUNT_PERCENT / 100));
+});
 </script>
 <template>
-  <div class="flex flex-col justify-center items- min-w-[255px]">
+  <div class="flex flex-col justify-center items- min-w-[255px] max-w-xs">
     <div
       class="w-full h-[26px] flex items-center justify-center mb-4 bg-yellow-2 rounded-t-lg"
-      v-if="hit">
+      v-if="hit"
+    >
       <div class="flex gap-3 items-center justify-center">
         <BaseIconsDirection />
         <p class="font-raleway text-[13px] font-bold">{{ hitText }}</p>
@@ -26,15 +30,31 @@ const { hit, title, discount, price, hitText } = toRefs(props)
       </div>
     </div>
     <div>
-      <p class="flex items-center justify-center gap-[10px] font-raleway font-bold text-[18px] text-center">
+      <div
+        class="mb-3 flex items-center justify-center gap-[10px] font-raleway font-extrabold text-[13px] text-center"
+      >
         {{ title }}
-        <div v-if="discount" class=" font-inter  w-[34px] leading-8 bg-primary-1 rounded-full text-[10px] text-white " >
-          {{ discount}}
-          </div
+        <div
+          v-if="discount"
+          class="font-inter w-[34px] leading-8 bg-primary-1 rounded-full text-[10px] text-white"
         >
-      </p>
-      <p class="font-raleway font-bold text-[18px] text-center">
+          {{ discount }}
+        </div>
+      </div>
+      <p
+        class="leading-normal mb-2 font-normal text-[13px] text-center m-auto max-w-[250px] min-h-[3em]"
+      >
         {{ subtitle }}
+      </p>
+      <div class="mb-3">
+        <p class="font-normal text-center text-[13px] text-gray-400 line-through">
+          {{ price }} грн/міс.
+        </p>
+        <p class="font-bold text-center text-[17px]">{{ discountPrice }} грн/міс.</p>
+      </div>
+      <BaseButton size="small" type="primary" text="Оплатити карткою" to="##" link class="mb-3" />
+      <p class="font-raleway text-center underline font-normal text-[13px] text-gray-400">
+        {{ paymentMethod }}
       </p>
     </div>
   </div>
