@@ -65,9 +65,12 @@ const discountPrice = computed(() => {
         </div>
       </div>
       <slot name="action"></slot>
-      <p class="font-raleway text-center underline font-normal text-[13px] text-gray-400">
+      <a
+        href="##"
+        class="block font-raleway text-center underline font-normal text-[13px] text-gray-400"
+      >
         {{ paymentMethod }}
-      </p>
+      </a>
     </div>
   </div>
 </template>

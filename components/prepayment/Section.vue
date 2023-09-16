@@ -100,6 +100,14 @@ const countDownData = reactive<{
           </PrepaymentCart>
         </template>
       </PrepaymentTable>
+      <!-- using br is bad practice, but needs binding logic -->
+      <p class="text-[17px] leading-normal font-raleway font-medium text-center m-auto mt-10">
+        Оплачуйте пакети <span class="font-bold">частинами без комісії!<br /></span> Натискайте на
+        кнопку
+        <span class="font-bold">Оплатити карткою</span>
+        та оформлюйте розстрочку<br />
+        через PrivatBank або Monobank
+      </p>
     </BaseContainer>
   </section>
 </template>
