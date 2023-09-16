@@ -12,13 +12,13 @@
   >
   <button
     v-else
-    class="flex items-center justify-center rounded transition-colors duration-200 ease-in-out"
+    :disabled="submitDisabled"
+    class="font-raleway text-[17px] rounded-full font-bold flex items-center justify-center transition-colors duration-200 ease-in-out"
     :class="[
-      type === 'primary'
-        ? 'bg-primary-1 text-green-dark hover:bg-primary-2'
-        : '',
-      size === 'small' ? 'h-8 px-4 text-xs' : '',
-      size === 'large' ? 'h-9 px-10 text-base' : '',
+      type === 'primary' ? 'bg-primary-1 hover:bg-primary-2 text-white' : '',
+      size === 'small' ? ' h-[52px] px-12 ' : '',
+      size === 'large' ? 'h-[56px] px-8 ' : '',
+      submitDisabled ? ' bg-blue-200 hover:bg-blue-300' : 'bg-primary-1',
     ]"
   >
     {{ text }}
@@ -26,16 +26,20 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from "vue";
+import type { PropType } from 'vue';
 
 defineProps({
+  submitDisabled: {
+    type: Boolean,
+    default: false,
+  },
   type: {
-    type: String as PropType<"primary">,
-    default: "primary",
+    type: String as PropType<'primary'>,
+    default: 'primary',
   },
   size: {
-    type: String as PropType<"small" | "large">,
-    default: "small",
+    type: String as PropType<'small' | 'large'>,
+    default: 'small',
   },
   text: {
     type: String,
@@ -47,7 +51,7 @@ defineProps({
   },
   to: {
     type: String,
-    default: "",
+    default: '',
   },
 });
 </script>
