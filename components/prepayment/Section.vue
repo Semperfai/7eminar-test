@@ -9,6 +9,7 @@ const dateEnd = '2023-10-03T00:00:00+02:00';
         Онлайн-Академію
       </h2>
       <p class="font-raleway font-bold text-xl text-center mb-10">Оберіть свій тарифний пакет:</p>
+      <!-- header -->
       <div class="grid grid-cols-1 gap-6 justify-center md:flex md:justify-between items-center">
         <BaseCountdown text="(для діючих передплатників додаткова знижка 10%)" :end="dateEnd" />
         <PrepaymentCart
@@ -31,6 +32,7 @@ const dateEnd = '2023-10-03T00:00:00+02:00';
           payment-method="Оплатити частинами"
         />
       </div>
+      <!-- body -->
     </BaseContainer>
   </section>
 </template>
