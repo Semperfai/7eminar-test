@@ -12,7 +12,9 @@ interface Props {
 const props = defineProps<Props>();
 </script>
 <template>
-  <div class="text-left font-raleway text-base font-medium flex gap-2 justify-start w-full">
+  <div
+    class="text-left font-raleway text-base font-medium flex gap-2 justify-start sm:justify-center w-full"
+  >
     <div v-if="rate_one || rate_two" class="text-center">
       <Icon :name="rate_one || rate_two ? 'fluent-mdl2:accept-medium' : 'mdi:close'" size="16" />
     </div>

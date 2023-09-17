@@ -22,7 +22,7 @@ const countDownData = reactive<{
         Оберіть свій тарифний пакет:
       </p>
 
-      <PrepaymentTable v-if="breakpoints?.isMd">
+      <PrepaymentTable v-if="breakpoints?.isLg">
         <template #header>
           <BaseCountdown :text="countDownData.text" :end="countDownData.dateEnd" />
           <PrepaymentCart

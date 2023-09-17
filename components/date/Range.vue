@@ -100,7 +100,7 @@ watch(
 <template>
   <div
     id="Range"
-    class="rotate-90 sm:rotate-0 min-w-[700px] sm:min-w-0 translate-y-[300px] -translate-x-[25%] sm:translate-y-0 sm:translate-x-0"
+    class="rotate-90 sm:rotate-0 min-w-[700px] sm:min-w-0 translate-y-[300px] sm:translate-y-0 sm:translate-x-0"
   >
     <div
       class="flex justify-between text-base sm:text-[18px] text-center leading-snug font-raleway font-normal"
