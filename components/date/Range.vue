@@ -1,139 +1,141 @@
 <script setup lang="ts">
-import { useBreakpoints } from '@/composables/useBreakpoints'
-import { formatDate } from '@/lib/helpers/formatDate'
-const breakpoints = useBreakpoints()
+import { useBreakpoints } from '@/composables/useBreakpoints';
+import { formatDate } from '@/lib/helpers/formatDate';
+const breakpoints = useBreakpoints();
 
 //types
 type Range = {
-  id: number
-  title: string
-  date_start: Date
-  date_end: Date
-}
+  id: number;
+  title: string;
+  date_start: Date;
+  date_end: Date;
+};
 
 interface IProps {
-  ranges: Range[]
+  ranges: Range[];
 }
 
 //props
-const props = defineProps<IProps>()
-const { ranges } = toRefs(props)
+const props = defineProps<IProps>();
+const { ranges } = toRefs(props);
 
 //computed
 const align = computed(() => {
-  return breakpoints?.value.isXs ? 'vertical' : 'horizontal'
-})
+  return breakpoints?.value.isXs ? 'vertical' : 'horizontal';
+});
 
 const timeSlice = computed(() => {
   const milliseconds =
-    ranges.value[ranges.value.length - 1].date_end.getTime() -
-    ranges.value[0].date_start.getTime()
-  const days = milliseconds / (1000 * 60 * 60 * 24)
-  const roundedDays = Math.round(days)
-  return roundedDays
-})
+    ranges.value[ranges.value.length - 1].date_end.getTime() - ranges.value[0].date_start.getTime();
+  const days = milliseconds / (1000 * 60 * 60 * 24);
+  const roundedDays = Math.round(days);
+  return roundedDays;
+});
 
 const currentTimeSlice = computed(() => {
-  const milliseconds = Date.now() - ranges.value[0].date_start.getTime()
-  const days = milliseconds / (1000 * 60 * 60 * 24)
-  const roundedDays = Math.round(days)
-  return roundedDays
-})
+  const milliseconds = Date.now() - ranges.value[0].date_start.getTime();
+  const days = milliseconds / (1000 * 60 * 60 * 24);
+  const roundedDays = Math.round(days);
+  return roundedDays;
+});
 
 const percentPosition = computed(() => {
-  return (currentTimeSlice.value / timeSlice.value) * 100
-})
+  return (currentTimeSlice.value / timeSlice.value) * 100;
+});
 
 const range = computed(() => {
-  return `${calculateCurrentPosition()}% 100%`
-})
+  return `${calculateCurrentPosition()}% 100%`;
+});
 
 //methods
 const calculateSegmentsWidth = (): string[] => {
-  const totalTimeSlice = timeSlice.value
+  const totalTimeSlice = timeSlice.value;
 
   const segments = ranges.value.map((range) => {
-    const rangeTimeSliceInMilliseconds =
-      range.date_end.getTime() - range.date_start.getTime()
-    const rangeTimeSliceInDays = Math.round(
-      rangeTimeSliceInMilliseconds / (1000 * 60 * 60 * 24)
-    )
+    const rangeTimeSliceInMilliseconds = range.date_end.getTime() - range.date_start.getTime();
+    const rangeTimeSliceInDays = Math.round(rangeTimeSliceInMilliseconds / (1000 * 60 * 60 * 24));
 
-    const percent = ((rangeTimeSliceInDays / totalTimeSlice) * 100).toFixed(2)
+    const percent = ((rangeTimeSliceInDays / totalTimeSlice) * 100).toFixed(2);
+    return `${percent}%`;
+  });
 
-    return `${percent}%`
-  })
-
-  return segments
-}
+  return segments;
+};
 
 const calculateCurrentPosition = (): number => {
-  const currentDay = new Date().getDate()
+  const currentDay = new Date().getDate();
 
   const hasBreakpoint = ranges.value.some((range) => {
-    const rangeDay = range.date_end.getDate()
-    return currentDay === rangeDay
-  })
+    const rangeDay = range.date_end.getDate();
+    return currentDay === rangeDay;
+  });
 
   if (hasBreakpoint) {
-    const segments = calculateSegmentsWidth()
+    const segments = calculateSegmentsWidth();
     const currentSegmentIndex = ranges.value.findIndex((range) => {
-      const rangeDay = range.date_end.getDate()
-      return currentDay === rangeDay
-    })
+      const rangeDay = range.date_end.getDate();
+      return currentDay === rangeDay;
+    });
 
     const percentPositionByBrakepoint = segments
       .slice(0, currentSegmentIndex + 1)
       .reduce((acc, segment) => {
-        return acc + Number(segment.slice(0, -1))
-      }, 0)
+        return acc + Number(segment.slice(0, -1));
+      }, 0);
 
-    return percentPositionByBrakepoint
+    return percentPositionByBrakepoint;
   } else {
-    return percentPosition.value
+    return percentPosition.value;
   }
-}
+};
 
 watch(
   () => ranges.value,
   () => {
-    calculateSegmentsWidth()
-    calculateCurrentPosition()
-  }
-)
+    calculateSegmentsWidth();
+    calculateCurrentPosition();
+  },
+);
 </script>
 <template>
-  <div
-    class="flex justify-between text-[18px] text-center leading-snug font-raleway font-normal">
+  <div>
     <div
-      :style="{ width: calculateSegmentsWidth()[range.id - 1] }"
-      v-for="range in ranges"
-      :key="range.id">
-      {{ range.title }}
-    </div>
-  </div>
-  <div
-    id="Range"
-    class="relative flex place-items-center h-[33px] mt-5 mb-5"
-    :class="{ 'is-vertical': align === 'vertical' }">
-    <div class="timeline"></div>
-    <div
-      class="circle"
-      :style="{ left: calculateCurrentPosition() + '%' }"></div>
-    <div class="absolute top-0 left-0 h-full flex w-full">
+      class="flex justify-between text-base sm:text-[18px] text-center leading-snug font-raleway font-normal rotate-90 sm:rotate-0 translate-x-1/4 sm:translate-x-0"
+    >
       <div
-        class="segments"
+        class="-rotate-90 sm:rotate-0"
+        :style="{ width: calculateSegmentsWidth()[range.id - 1] }"
         v-for="range in ranges"
         :key="range.id"
-        :style="{ width: calculateSegmentsWidth()[range.id - 1] }"></div>
+      >
+        {{ range.title }}
+      </div>
     </div>
-  </div>
-  <div class="dates">
     <div
-      v-for="range in ranges"
-      :key="range.id"
-      :style="{ width: calculateSegmentsWidth()[range.id - 1] }">
-      <p class="inline-block">{{ formatDate(range.date_end) }}</p>
+      id="Range"
+      class="relative flex place-items-center h-[33px] mt-5 mb-5 sm:rotate-0 rotate-90"
+      :class="{ 'is-vertical': align === 'vertical' }"
+    >
+      <div class="timeline"></div>
+      <div class="circle" :style="{ left: calculateCurrentPosition() + '%' }"></div>
+      <div class="absolute top-0 left-0 h-full flex w-full">
+        <div
+          class="segments"
+          v-for="range in ranges"
+          :key="range.id"
+          :style="{ width: calculateSegmentsWidth()[range.id - 1] }"
+        ></div>
+      </div>
+    </div>
+    <div class="dates sm:rotate-0 rotate-90 -translate-x-1/4 sm:translate-x-0">
+      <div
+        class="-rotate-90 sm:rotate-0"
+        v-for="range in ranges"
+        :key="range.id"
+        :style="{ width: calculateSegmentsWidth()[range.id - 1] }"
+      >
+        <p class="inline-block">{{ formatDate(range.date_end) }}</p>
+      </div>
     </div>
   </div>
 </template>

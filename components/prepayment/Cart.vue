@@ -31,7 +31,7 @@ const discountPrice = computed(() => {
     </div>
     <div>
       <div
-        class="mb-3 flex items-center justify-center gap-[10px] font-raleway font-extrabold text-[13px] text-center"
+        class="sm:mb-3 flex items-center justify-center gap-[10px] font-raleway font-extrabold text-[13px] text-center"
         v-if="title"
       >
         {{ title }}
@@ -40,7 +40,7 @@ const discountPrice = computed(() => {
         </div>
       </div>
       <p
-        class="leading-normal mb-2 font-normal text-[13px] text-center m-auto max-w-[250px] min-h-[3em]"
+        class="leading-normal mb-2 font-normal text-[13px] text-center m-auto max-w-[250px] sm:min-h-[3em]"
         v-if="subtitle"
       >
         {{ subtitle }}

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const infoItems = [
   { id: 1, title: '8+', description: 'професійних курсів' },
-  { id: 2, title: '12', description: 'професійних курсів' },
-  { id: 3, title: '48', description: 'професійних курсів' },
-  { id: 4, title: '∞ ', description: 'професійних курсів' },
+  { id: 2, title: '12', description: 'закритих клубних лекцій' },
+  { id: 3, title: '48', description: 'нових вебінарів та тренінгів' },
+  { id: 4, title: 'infinity', description: 'Безлімітні відповідіна запитання протягом навчання' },
 ];
 </script>
 <template>
-  <section id="DataRangeSection" class="pt-20 pb-20 bg-white">
+  <section id="DataRangeSection" class="pt-16 sm:pt-20 pb-20 bg-white">
     <BaseContainer>
       <div class="flex justify-between items-start flex-wrap gap-16">
         <BaseForm
