@@ -24,30 +24,10 @@ const emit = defineEmits<{
 
 <style scoped>
 .modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
+  @apply flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-opacity-50 bg-black;
 }
 
 .modal-content {
-  background-color: white;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  height: 40%;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  @apply bg-white relative flex items-center justify-center w-1/3 h-1/3 rounded-2xl shadow-xl text-center;
 }
 </style>
