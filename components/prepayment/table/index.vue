@@ -2,7 +2,7 @@
 <template>
   <div
     role="header"
-    class="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 grid-cols-1 gap-4 justify-between items-center justify-items-center mb-6"
+    class="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 grid-cols-1 gap-8 justify-between items-center justify-items-center mb-6"
   >
     <slot name="header"></slot>
   </div>

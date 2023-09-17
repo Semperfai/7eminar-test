@@ -9,7 +9,9 @@ const infoItems = [
 <template>
   <section id="DataRangeSection" class="pt-16 sm:pt-20 pb-20 bg-white">
     <BaseContainer>
-      <div class="flex justify-between items-start flex-wrap gap-16">
+      <div
+        class="flex justify-center md:justify-between flex-wrap md:flex-nowrap items-start gap-16"
+      >
         <BaseForm
           title="Залиште заявку, і ми підберемо для вас умови зі знижкою"
           class="max-w-[488px]"

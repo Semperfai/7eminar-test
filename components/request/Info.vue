@@ -12,7 +12,7 @@ const props = defineProps<{
       {{ titleInfo }}
     </h3>
     <div class="grid grid-cols-2 grid-rows-2 gap-5 sm:gap-2 mb-5">
-      <div v-for="item in infoItems" :key="item.id">
+      <div v-for="item in infoItems" :key="item.id" class="max-w-[190px]">
         <div
           class="font-eukraine text-[43px] sm:text-[63px] leading-normal font-normal sm:font-bold text-primary-1 mb-4"
         >

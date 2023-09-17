@@ -104,8 +104,8 @@ const countDownData = reactive<{
           </PrepaymentCart>
         </template>
       </PrepaymentTable>
-      <PrepaymentTableMobile else>
-        <template #header>
+      <PrepaymentTableMobile v-else>
+        <template #default>
           <BaseCountdown :text="countDownData.text" :end="countDownData.dateEnd" />
           <PrepaymentCart
             :hit="true"
@@ -127,8 +127,26 @@ const countDownData = reactive<{
               />
             </template>
           </PrepaymentCart>
+          <PrepaymentTableMobileRow
+            v-for="item in TARIFF_PACKAGES"
+            :key="item.id"
+            :text="item.text"
+            :new="item.new"
+            :rate_one="item.rate_one"
+          />
+          <PrepaymentCart class="mb-11" :hit="false" discount="-75%" :price="1079">
+            <template #action>
+              <BaseButton
+                size="small"
+                type="primary"
+                text="Завантажити рахунок"
+                to="##"
+                link
+                class="mb-3"
+              />
+            </template>
+          </PrepaymentCart>
           <PrepaymentCart
-            class="self-end"
             :hit="false"
             discount="-75%"
             :price="1079"
@@ -148,42 +166,13 @@ const countDownData = reactive<{
               />
             </template>
           </PrepaymentCart>
-        </template>
-        <template #body>
-          <PrepaymentTableRow
+          <PrepaymentTableMobileRow
             v-for="item in TARIFF_PACKAGES"
             :key="item.id"
             :text="item.text"
             :new="item.new"
             :rate_one="item.rate_one"
-            :rate_two="item.rate_two"
           />
-        </template>
-        <template #footer>
-          <PrepaymentCart :hit="false" discount="-75%" :price="1079">
-            <template #action>
-              <BaseButton
-                size="small"
-                type="primary"
-                text="Завантажити рахунок"
-                to="##"
-                link
-                class="mb-3"
-              />
-            </template>
-          </PrepaymentCart>
-          <PrepaymentCart class="self-end" :hit="false" discount="-75%" :price="1079">
-            <template #action>
-              <BaseButton
-                size="small"
-                type="primary"
-                text="Завантажити рахунок"
-                to="##"
-                link
-                class="mb-3"
-              />
-            </template>
-          </PrepaymentCart>
         </template>
       </PrepaymentTableMobile>
       <!-- using br is bad practice, but needs binding logic -->
