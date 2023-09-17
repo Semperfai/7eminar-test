@@ -98,22 +98,28 @@ watch(
 );
 </script>
 <template>
-  <div>
+  <div
+    id="Range"
+    class="rotate-90 sm:rotate-0 min-w-[700px] sm:min-w-0 translate-y-[300px] -translate-x-[25%] sm:translate-y-0 sm:translate-x-0"
+  >
     <div
-      class="flex justify-between text-base sm:text-[18px] text-center leading-snug font-raleway font-normal rotate-90 sm:rotate-0 translate-x-1/4 sm:translate-x-0"
+      class="flex justify-between text-base sm:text-[18px] text-center leading-snug font-raleway font-normal"
     >
       <div
-        class="-rotate-90 sm:rotate-0"
         :style="{ width: calculateSegmentsWidth()[range.id - 1] }"
         v-for="range in ranges"
         :key="range.id"
       >
-        {{ range.title }}
+        <p
+          class="-rotate-90 max-w-[100px] sm:max-w-none text-left sm:text-center -translate-y-5 sm:rotate-0 sm:-translate-y-0"
+        >
+          {{ range.title }}
+        </p>
       </div>
     </div>
     <div
       id="Range"
-      class="relative flex place-items-center h-[33px] mt-5 mb-5 sm:rotate-0 rotate-90"
+      class="relative flex place-items-center h-[33px] mt-5 mb-5"
       :class="{ 'is-vertical': align === 'vertical' }"
     >
       <div class="timeline"></div>
@@ -127,14 +133,15 @@ watch(
         ></div>
       </div>
     </div>
-    <div class="dates sm:rotate-0 rotate-90 -translate-x-1/4 sm:translate-x-0">
+    <div class="dates">
       <div
-        class="-rotate-90 sm:rotate-0"
         v-for="range in ranges"
         :key="range.id"
         :style="{ width: calculateSegmentsWidth()[range.id - 1] }"
       >
-        <p class="inline-block">{{ formatDate(range.date_end) }}</p>
+        <p class="inline-block -rotate-90 sm:rotate-0 sm:translate-y-0 translate-y-10">
+          {{ formatDate(range.date_end) }}
+        </p>
       </div>
     </div>
   </div>

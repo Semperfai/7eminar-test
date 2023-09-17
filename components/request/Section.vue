@@ -7,7 +7,7 @@ const infoItems = [
 ];
 </script>
 <template>
-  <section id="DataRangeSection" class="pt-16 sm:pt-20 pb-20 bg-white">
+  <section id="RequestSection" class="pt-16 sm:pt-20 pb-20 bg-white">
     <BaseContainer>
       <div
         class="flex justify-center md:justify-between flex-wrap md:flex-nowrap items-start gap-16"

@@ -2,7 +2,7 @@
   <a
     v-if="link"
     :href="to"
-    class="font-raleway text-[17px] rounded-full font-bold flex items-center justify-center transition-colors duration-200 ease-in-out"
+    class="font-raleway shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-[17px] rounded-full font-bold flex items-center justify-center transition-colors duration-200 ease-in-out"
     :class="[
       type === 'primary' ? 'bg-primary-1  hover:bg-primary-2 text-white' : '',
       size === 'small' ? ' h-[52px]  px-12 ' : '',
@@ -13,7 +13,7 @@
   <button
     v-else
     :disabled="submitDisabled"
-    class="font-raleway text-[17px] rounded-full font-bold flex items-center justify-center transition-colors duration-200 ease-in-out"
+    class="font-raleway shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] text-[17px] rounded-full font-bold flex items-center justify-center transition-colors duration-200 ease-in-out"
     :class="[
       type === 'primary' ? 'bg-primary-1 hover:bg-primary-2 text-white' : '',
       size === 'small' ? ' h-[52px] px-12 ' : '',
