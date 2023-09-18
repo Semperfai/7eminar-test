@@ -56,7 +56,7 @@ const slides = [
             class="sm:mb-10 mb-5"
           />
           <Swiper
-            class="w-[300px] sm:w-[910px] sm:mb-10"
+            class="w-[300px] sm:w-[600px] lg:w-[910px] sm:mb-10"
             :slides-per-view="slidesPerView"
             :space-between="15"
           >
@@ -64,10 +64,7 @@ const slides = [
               <div
                 class="relative h-[700px] flex justify-center items-center hover:-translate-y-10 transition-all duration-200 ease-linear"
               >
-                <div
-                  width="290"
-                  class="absolute top-0 left-0 h-full w-full flex items-center justify-center"
-                >
+                <div class="absolute top-0 left-0 h-full w-full flex items-center justify-center">
                   <img class="h-[593px] w-[293px] max-w-[300px]" :src="slide.images[0]" />
                 </div>
                 <div
