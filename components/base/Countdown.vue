@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { formatDate } from '@/lib/helpers/formatDate';
+
 interface IDiff {
   hour: number | string;
   minute: number | string;
@@ -59,27 +61,31 @@ onBeforeUnmount(() => {
 </script>
 <template>
   <div class="flex flex-col items-center">
-    <div
-      class="flex justify-between gap-2 items-start max-w-[146px] h-14 text-primary-1 font-normal"
-    >
-      <div class="flex gap-2 items-center justify-center">
-        <p class="opacity-40 text-[29px] leading-normal">
-          {{ diff.hour }}
-        </p>
-      </div>
-      <div class="flex gap-[7px] items-center justify-center">
-        <p class="text-[22px]">:</p>
-        <p class="opacity-40 text-[29px] leading-normal">
-          {{ diff.minute }}
-        </p>
-        <p class="text-[22px]">:</p>
-      </div>
-      <div class="flex items-center justify-center">
-        <p class="text-[29px] leading-normal">
-          {{ diff.second }}
-        </p>
+    <div class="flex flex-col items-start max-w-[146px] text-primary-1 font-normal mb-3">
+      <div class="flex justify-between gap-2 items-start">
+        <div class="gap-2 items-center justify-center">
+          <div class="opacity-40 text-[29px] leading-normal text-center">
+            <p>{{ diff.hour }}</p>
+            <p class="text-[15px] leading-normal">год</p>
+          </div>
+        </div>
+        <div class="flex gap-[7px] items-center justify-center">
+          <p class="text-[22px] self-start mt-1">:</p>
+          <div class="opacity-40 text-[29px] leading-normal text-center">
+            <p>{{ diff.minute }}</p>
+            <p class="text-[15px] leading-normal">хв</p>
+          </div>
+          <p class="text-[22px] self-start mt-1">:</p>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="text-[29px] leading-normal text-center">
+            <p>{{ diff.second }}</p>
+            <p class="text-[15px] leading-normal">сек</p>
+          </div>
+        </div>
       </div>
     </div>
+
     <p class="font-raleway text-[15px] max-w-[225px] text-center leading-normal text-[#515154]">
       {{ text }}
     </p>
