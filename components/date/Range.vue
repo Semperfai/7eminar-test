@@ -103,7 +103,7 @@ watch(
     class="rotate-90 sm:rotate-0 min-w-[700px] sm:min-w-0 translate-y-[300px] sm:translate-y-0 sm:translate-x-0"
   >
     <div
-      class="flex justify-between text-base sm:text-[18px] text-center leading-snug font-raleway font-normal"
+      class="flex -translate-x-5 justify-between text-sm sm:text-base text-center leading-snug font-raleway font-normal"
     >
       <div
         :style="{ width: calculateSegmentsWidth()[range.id - 1] }"
@@ -111,7 +111,7 @@ watch(
         :key="range.id"
       >
         <p
-          class="-rotate-90 max-w-[100px] sm:max-w-none text-left sm:text-center -translate-y-5 sm:rotate-0 sm:-translate-y-0"
+          class="-rotate-90 max-w-[100px] sm:max-w-none text-left sm:text-center sm:rotate-0 sm:-translate-y-0"
         >
           {{ range.title }}
         </p>
@@ -174,7 +174,7 @@ watch(
 }
 
 .dates {
-  @apply flex justify-between text-[18px] text-end leading-snug font-raleway font-bold;
+  @apply flex justify-between text-xs sm:text-base text-end leading-snug font-raleway font-bold;
 }
 
 .dates > div:not(:last-child) p {
