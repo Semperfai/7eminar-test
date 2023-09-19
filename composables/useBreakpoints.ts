@@ -2,8 +2,7 @@ import { computed, ref } from 'vue';
 
 export const useBreakpoints = () => {
   if (process.client) {
-    const viewportWidth = ref(window.innerWidth);
-
+    const viewportWidth = ref(globalThis?.innerWidth);
     window.addEventListener('resize', () => {
       viewportWidth.value = window.innerWidth;
     });
