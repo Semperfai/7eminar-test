@@ -27,9 +27,9 @@ const ranges = [
 ];
 </script>
 <template>
-  <section id="DataRangeSection" class="pt-20 pb-20 bg-white min-h-[920px] sm:min-h-fit">
+  <section id="DataRangeSection" class="pb-20 bg-white min-h-[920px] sm:min-h-fit">
     <BaseContainer class="flex items-center justify-center flex-col">
-      <h2 class="font-eukraine font-bold text-[24px] sm:text-[42px] text-center sm:mb-14">
+      <h2 class="font-eukraine font-bold text-lg sm:text-4xl text-center sm:mb-14">
         Навчання, яке працює!Відкрийте для себе найпопулярніші курси
       </h2>
       <DateRange :ranges="ranges" />
