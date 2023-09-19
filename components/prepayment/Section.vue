@@ -2,7 +2,9 @@
 import { TARIFF_PACKAGES } from '@/__mocks__/tariff-packages';
 import { useBreakpoints } from '@/composables/useBreakpoints';
 const breakpoints = useBreakpoints();
-
+const showTable = computed(() => {
+  return breakpoints?.value.isLg;
+});
 const countDownData = reactive<{
   dateEnd: string;
   text: string;
@@ -12,7 +14,7 @@ const countDownData = reactive<{
 });
 </script>
 <template>
-  <section id="PrepaymentSection" class="pt-28 pb-10 sm:pb-20 bg-white-1">
+  <section id="PrepaymentSection" class="pt-20 pb-10 sm:pb-20 bg-white-1">
     <BaseContainer>
       <h2 class="font-eukraine font-bold text-[24px] sm:text-[42px] text-center mb-[20px]">
         Передплата на Вищу Бухгалтерську<br />
@@ -22,7 +24,7 @@ const countDownData = reactive<{
         Оберіть свій тарифний пакет:
       </p>
 
-      <PrepaymentTable v-if="breakpoints?.isLg">
+      <PrepaymentTable v-if="showTable">
         <template #header>
           <BaseCountdown :text="countDownData.text" :end="countDownData.dateEnd" />
           <PrepaymentCart
@@ -104,7 +106,7 @@ const countDownData = reactive<{
           </PrepaymentCart>
         </template>
       </PrepaymentTable>
-      <PrepaymentTableMobile v-else>
+      <PrepaymentTableMobile v-if="!showTable">
         <template #default>
           <BaseCountdown :text="countDownData.text" :end="countDownData.dateEnd" />
           <PrepaymentCart
@@ -175,16 +177,6 @@ const countDownData = reactive<{
           />
         </template>
       </PrepaymentTableMobile>
-      <!-- using br is bad practice, but needs binding logic -->
-      <p
-        class="text-base sm:text-[17px] leading-normal font-raleway font-medium text-center m-auto mt-10"
-      >
-        Оплачуйте пакети <span class="font-bold">частинами без комісії!<br /></span> Натискайте на
-        кнопку
-        <span class="font-bold">Оплатити карткою</span>
-        та оформлюйте розстрочку<br />
-        через PrivatBank або Monobank
-      </p>
     </BaseContainer>
   </section>
 </template>
