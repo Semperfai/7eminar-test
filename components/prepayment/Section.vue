@@ -106,7 +106,7 @@ const countDownData = reactive<{
           </PrepaymentCart>
         </template>
       </PrepaymentTable>
-      <PrepaymentTableMobile v-if="!showTable">
+      <PrepaymentTableMobile v-else>
         <template #default>
           <BaseCountdown :text="countDownData.text" :end="countDownData.dateEnd" />
           <PrepaymentCart
